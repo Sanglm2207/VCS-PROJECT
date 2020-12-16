@@ -66,4 +66,43 @@ public class AccountController {
     public void deleteAccount(@PathVariable(name = "id") Long id, @CurrentUser UserDetailsImpl currentUser) {
         accountService.deleteAccount(id, currentUser);
     }
+
+    @ResponseBody
+    @ResponseStatus(code = HttpStatus.OK)
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PostMapping("/getFind")
+    public List<Account> getKey(@RequestBody Account accounts){
+        String find = "SELECT * FROM account ac where 1 = 1 ";
+        if(accounts.getAccountNumber() != 0){
+            find += "and account_number = " + accounts.getAccountNumber();
+        }
+        if(accounts.getAddress() != null){
+            find += " and address like '%" + accounts.getAddress() + "%'";
+        }
+        if(accounts.getAge() != 0){
+            find += " and age = " + accounts.getAge();
+        }
+        if(accounts.getBalance() != 0){
+            find += " and balance = " + accounts.getBalance();
+        }
+        if(accounts.getCity() != null){
+            find += " and city like '%" + accounts.getCity() + "%'";
+        }
+        if(accounts.getEmail() != null){
+            find += " and email like '%" + accounts.getEmail()+ "%'";
+        }
+        if(accounts.getEmployer() != null){
+            find += " and employer like '%" + accounts.getEmployer()+ "%'";
+        }
+        if(accounts.getFirstname() != null){
+            find += " and firstname like '%" + accounts.getFirstname()+ "%'";
+        }
+        if(accounts.getGender() != null){
+            find += " and gender like '%" + accounts.getGender()+ "%'";
+        }
+        if(accounts.getLastname() != null){
+            find += " and lastname like '%" + accounts.getLastname()+ "%'";
+        }
+        return accountService.findKey(find);
+    }
 }

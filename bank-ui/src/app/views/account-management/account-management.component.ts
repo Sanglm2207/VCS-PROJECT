@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -30,6 +30,7 @@ export class AccountManagementComponent implements OnInit {
 
   myControl = new FormControl();
 
+  formSearch: FormGroup;
 
 
 
@@ -48,7 +49,19 @@ export class AccountManagementComponent implements OnInit {
 
   ngOnInit(){
     this.getAllAccounts();
-
+    this.formSearch = new FormGroup({
+      accountNumber: new FormControl(''),
+      address: new FormControl(''),
+      age: new FormControl(''),
+      balance: new FormControl(''),
+      city: new FormControl(''),
+      email: new FormControl(''),
+      employer: new FormControl(''),
+      firstName: new FormControl(''),
+      gender: new FormControl(''),
+      lastName: new FormControl(''),
+      state: new FormControl(''),
+    });
 
   }
 
@@ -87,6 +100,14 @@ export class AccountManagementComponent implements OnInit {
       console.log(data);
       this.toastr.success("Deleted account successfully!")
       window.location.reload();
+    })
+  }
+
+  search(){
+    this.accountService.findAccount(this.formSearch.value).subscribe(data =>{
+      console.log("search success!" + data);
+
+      this.accounts.data = data;
     })
   }
 }

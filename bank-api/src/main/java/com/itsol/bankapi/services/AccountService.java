@@ -22,4 +22,5 @@ public interface AccountService {
 
     void deleteAccount(Long id, UserDetailsImpl currentUser);
 
+    List<Account> findKey(String find);
 }

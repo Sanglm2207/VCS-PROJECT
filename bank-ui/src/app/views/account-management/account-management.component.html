@@ -5,21 +5,22 @@
         <div class="card" >
           <div class="card-body">
             <h5 class="card-title">Tra cứu</h5>
+            <form [formGroup]="formSearch" class="form-search" >
             <table style="width:100%">
               <tr>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="Firstname" required>
+                    <input matInput placeholder="Firstname" formControlName="firstName" >
                   </mat-form-field>
                 </th>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="Lastname" required>
+                    <input matInput placeholder="Lastname" >
                   </mat-form-field>
                 </th>
                 <th>
                   <mat-form-field appearance="legacy" >
-                    <input matInput placeholder="Age" required>
+                    <input matInput placeholder="Age" formControlName="age" >
                   </mat-form-field>
                 </th>
 
@@ -27,47 +28,60 @@
               <tr>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="Account Number" required>
+                    <input matInput placeholder="Account Number" formControlName="accountNumber" >
                   </mat-form-field>
                 </th>
                 <th>
                   <mat-form-field appearance="legacy">
-                      <input matInput placeholder="Employer" required>
+                      <input matInput placeholder="Employer" formControlName="employer" >
                   </mat-form-field>
                 </th>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="Email" required>
+                    <input matInput placeholder="Balance" formControlName="balance" >
                   </mat-form-field>
                 </th>
               </tr>
               <tr>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="Address" required>
+                    <input matInput placeholder="Email" formControlName="email" >
                   </mat-form-field>
                 </th>
                 <th>
                   <mat-form-field appearance="legacy">
-                      <input matInput placeholder="City" required>
+                    <input matInput placeholder="Gender" formControlName="gender" >
+                  </mat-form-field>
+              </tr>
+              <tr>
+                <th>
+                  <mat-form-field appearance="legacy">
+                    <input matInput placeholder="Address" formControlName="address" >
                   </mat-form-field>
                 </th>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="State" required>
+                      <input matInput placeholder="City" formControlName="city" >
+                  </mat-form-field>
+                </th>
+                <th>
+                  <mat-form-field appearance="legacy">
+                    <input matInput placeholder="State" >
                   </mat-form-field>
                 </th>
               </tr>
+
               <tr>
                 <td></td>
                 <td>
-                  <button mat-raised-button color="primary">Search</button>
+                  <button mat-raised-button color="primary" (click)="search()">Search</button>
                   <button mat-raised-button color="accent" (click)="openAddDialog()">Create</button>
                 </td>
                 <td></td>
               </tr>
 
             </table>
+          </form>
          </div>
         </div>
 
@@ -78,7 +92,7 @@
           <h5 class="card-title">Danh sách người dùng</h5>
           <div class="center-width-separator">
 
-             <mat-table #table [dataSource]="accounts" matSort>
+              <mat-table #table [dataSource]="accounts" matSort>
                <ng-container matColumnDef="id">
                  <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
                  <mat-cell *matCellDef="let i =index">{{paginator.pageIndex * paginator.pageSize + i + 1}}</mat-cell>
@@ -123,7 +137,7 @@
                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
-               </mat-table>
+              </mat-table>
                <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 50]">
                </mat-paginator>
              </div>

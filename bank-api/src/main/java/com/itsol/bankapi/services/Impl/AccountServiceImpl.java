@@ -5,9 +5,11 @@ import com.itsol.bankapi.exception.UnauthorizedException;
 import com.itsol.bankapi.models.Account;
 import com.itsol.bankapi.models.ERole;
 import com.itsol.bankapi.payload.response.ApiResponse;
+import com.itsol.bankapi.repository.AccountQuerySQL;
 import com.itsol.bankapi.repository.AccountRepository;
 import com.itsol.bankapi.security.services.UserDetailsImpl;
 import com.itsol.bankapi.services.AccountService;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     AccountRepository accountRepository;
+
+    @Autowired
+    AccountQuerySQL accountQuerySQL;
 
     @Override
     public List<Account> getAllAccounts() {
@@ -73,5 +78,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void deleteAccount(Long id, UserDetailsImpl currentUser) {
          accountRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Account> findKey(String find){
+        return this.accountQuerySQL.getAccountSQL(find);
     }
 }

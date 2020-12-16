@@ -32,4 +32,8 @@ export class AccountService {
   deleteAccount(id: number): Observable<Accounts[]> {
     return this.http.delete<Accounts[]>(this.baseUrl + 'accounts/deleteAccount/' + id)
   }
+
+  findAccount(find: any): Observable<Accounts[]>{
+    return this.http.post<Accounts[]>(this.baseUrl + 'accounts/getFind', find);
+  }
 }
