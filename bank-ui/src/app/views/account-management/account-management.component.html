@@ -10,12 +10,12 @@
               <tr>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="Firstname" formControlName="firstName" >
+                    <input matInput placeholder="Firstname" formControlName="firstname" >
                   </mat-form-field>
                 </th>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="Lastname" >
+                    <input matInput placeholder="Lastname" formControlName="lastname">
                   </mat-form-field>
                 </th>
                 <th>
@@ -52,13 +52,14 @@
                   <mat-form-field appearance="legacy">
                     <input matInput placeholder="Gender" formControlName="gender" >
                   </mat-form-field>
-              </tr>
-              <tr>
+                </th>
                 <th>
                   <mat-form-field appearance="legacy">
                     <input matInput placeholder="Address" formControlName="address" >
                   </mat-form-field>
                 </th>
+              </tr>
+              <tr>
                 <th>
                   <mat-form-field appearance="legacy">
                       <input matInput placeholder="City" formControlName="city" >
@@ -66,7 +67,7 @@
                 </th>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="State" >
+                    <input matInput placeholder="State" formControlName="state" >
                   </mat-form-field>
                 </th>
               </tr>
@@ -93,13 +94,14 @@
           <div class="center-width-separator">
 
               <mat-table #table [dataSource]="accounts" matSort>
-               <ng-container matColumnDef="id">
+
+               <ng-container matColumnDef="id" >
                  <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
                  <mat-cell *matCellDef="let i =index">{{paginator.pageIndex * paginator.pageSize + i + 1}}</mat-cell>
                </ng-container>
 
                <ng-container matColumnDef="lastname">
-                 <mat-header-cell *matHeaderCellDef>Lastname</mat-header-cell>
+                 <mat-header-cell *matHeaderCellDef >Lastname</mat-header-cell>
                  <mat-cell *matCellDef="let i">{{i.lastname}}</mat-cell>
                </ng-container>
 

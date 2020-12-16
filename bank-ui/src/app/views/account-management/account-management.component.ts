@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -18,13 +18,13 @@ import { EditAccountComponent } from './edit-account/edit-account.component';
   templateUrl: './account-management.component.html',
   styleUrls: ['./account-management.component.css']
 })
-export class AccountManagementComponent implements OnInit {
+export class AccountManagementComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   //accounts: Accounts[] = [];
-  public accounts = new MatTableDataSource();
+  public accounts = new MatTableDataSource<Accounts>();
 
   displayedColumns = ['id', 'lastname', 'firstname', 'accountNumber', 'balance','actions'];
 
@@ -41,7 +41,6 @@ export class AccountManagementComponent implements OnInit {
 
 
   ngAfterViewInit() {
-    // add ngAfterViewInit hook
         this.accounts.paginator = this.paginator;
         this.accounts.sort = this.sort;
   }
@@ -57,9 +56,9 @@ export class AccountManagementComponent implements OnInit {
       city: new FormControl(''),
       email: new FormControl(''),
       employer: new FormControl(''),
-      firstName: new FormControl(''),
+      firstname: new FormControl(''),
       gender: new FormControl(''),
-      lastName: new FormControl(''),
+      lastname: new FormControl(''),
       state: new FormControl(''),
     });
 
@@ -105,8 +104,6 @@ export class AccountManagementComponent implements OnInit {
 
   search(){
     this.accountService.findAccount(this.formSearch.value).subscribe(data =>{
-      console.log("search success!" + data);
-
       this.accounts.data = data;
     })
   }

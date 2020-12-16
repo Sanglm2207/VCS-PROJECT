@@ -1,13 +1,13 @@
 export interface Accounts {
-  accountNumber: number;
-  balance: number;
-  firstname: string;
-  lastname: string;
-  age:number;
-  gender: string;
-  address: string;
-  employer: string;
-  email: string;
-  city: string;
-  state: string;
+  accountNumber?: number;
+  address?: string;
+  age?: number;
+  balance?: string;
+  city?: string;
+  email?: string;
+  employer?: string;
+  firstname?: string;
+  gender?: string;
+  lastname?: string;
+  state?: string;
 }

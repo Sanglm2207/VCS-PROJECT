@@ -103,6 +103,9 @@ public class AccountController {
         if(accounts.getLastname() != null){
             find += " and lastname like '%" + accounts.getLastname()+ "%'";
         }
+        if(accounts.getState() != null) {
+            find += " and state like '%" + accounts.getState() + "%'";
+        }
         return accountService.findKey(find);
     }
 }
