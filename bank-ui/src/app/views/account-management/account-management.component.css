@@ -30,3 +30,7 @@ table {
   width: 100%;
 }
 
+.error {
+  font-size: 0.95rem;
+}
+

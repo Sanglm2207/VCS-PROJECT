@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validator, Validators} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -32,7 +32,7 @@ export class AccountManagementComponent implements OnInit, AfterViewInit {
 
   formSearch: FormGroup;
 
-
+  submitted = false;
 
   constructor(private accountService: AccountService,
               private route: ActivatedRoute,
@@ -48,23 +48,31 @@ export class AccountManagementComponent implements OnInit, AfterViewInit {
 
   ngOnInit(){
     this.getAllAccounts();
+    this.buildForm();
+
+  }
+
+
+  buildForm() {
     this.formSearch = new FormGroup({
-      accountNumber: new FormControl(''),
+      accountNumber: new FormControl('', Validators.required),
       address: new FormControl(''),
       age: new FormControl(''),
       balance: new FormControl(''),
       city: new FormControl(''),
       email: new FormControl(''),
       employer: new FormControl(''),
-      firstname: new FormControl(''),
+      firstname: new FormControl('', Validators.required),
       gender: new FormControl(''),
-      lastname: new FormControl(''),
+      lastname: new FormControl('', Validators.required),
       state: new FormControl(''),
     });
-
   }
 
 
+  get f() {
+    return this.formSearch.controls;
+  }
 
   getAllAccounts() {
     this.accountService.getAllAccounts().subscribe(

@@ -10,12 +10,17 @@
               <tr>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="Firstname" formControlName="firstname" >
+                    <input matInput placeholder="Firstname" formControlName="firstname" [ngClass] = "{'is-valid': submitted && f.firstname.errors}" >
+                    <div *ngIf=" f.firstname.errors" class="invalid-feedback">
+                      <p class="error" *ngIf="f.firstname.errors.required">Nhập đầy đủ các thông tin</p>
+                    </div>
+
                   </mat-form-field>
                 </th>
                 <th>
                   <mat-form-field appearance="legacy">
-                    <input matInput placeholder="Lastname" formControlName="lastname">
+                    <input matInput placeholder="Lastname" formControlName="lastname" [ngClass] = "{'is-valid': submitted && f.lastname.errors}" >
+
                   </mat-form-field>
                 </th>
                 <th>
@@ -72,6 +77,11 @@
                 </th>
               </tr>
 
+              <!-- <tr>
+                <div *ngIf=" f.firstname.errors" class="invalid-feedback">
+                  <p class="error" *ngIf="f.firstname.errors.required">Nhập đầy đủ các thông tin</p>
+                </div>
+              </tr> -->
               <tr>
                 <td></td>
                 <td>

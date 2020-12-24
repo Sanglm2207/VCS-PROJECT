@@ -50,11 +50,17 @@ export class CreateAccountComponent implements OnInit {
 
   onSubmit() {
     this.accountService.createAccount(this.addForm.value)
-      .subscribe( data => {
-        console.log(data);
-        this.toastr.success('Thêm mới thành công');
-        this.refreshPage();
-      });
+      .subscribe(
+        data => {
+          console.log(data);
+          this.toastr.success('Thêm mới thành công');
+          this.refreshPage();
+        },
+        error => {
+          console.log(error);
+          this.toastr.error('Thêm mới thất bại !');
+        }
+      );
   }
 
   refreshPage() {
