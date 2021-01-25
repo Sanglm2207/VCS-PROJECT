@@ -16,32 +16,36 @@ import javax.validation.constraints.Size;
 		})
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID")
 	private Long id;
 
 	@NotBlank
 	@Size(max = 20)
+	@Column(name = "USERNAME")
 	private String username;
 
 	@NotBlank
-	@Column(name = "first_name")
-	@Size(max = 40)
-	private String firstName;
-
-	@NotBlank
-	@Column(name = "last_name")
-	@Size(max = 40)
-	private String lastName;
-
+	@Size(max = 120)
+	@Column(name = "PASSWORD")
+	private String password;
 
 	@NotBlank
 	@Size(max = 50)
 	@Email
+	@Column(name = "EMAIL")
 	private String email;
 
 	@NotBlank
-	@Size(max = 120)
-	private String password;
+	@Column(name = "FIRSTNAME")
+	@Size(max = 40)
+	private String firstName;
+
+	@NotBlank
+	@Column(name = "LASTNAME")
+	@Size(max = 40)
+	private String lastName;
+
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_roles", 
@@ -52,12 +56,12 @@ public class User {
 	public User() {
 	}
 
-	public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 40) String firstName, @NotBlank @Size(max = 40) String lastName, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password) {
+	public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 120) String password, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 40) String firstName, @NotBlank @Size(max = 40) String lastName) {
 		this.username = username;
+		this.password = password;
+		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
 	}
 
 	public Long getId() {
@@ -76,14 +80,6 @@ public class User {
 		this.username = username;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -92,12 +88,12 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getFirstName() {
@@ -114,5 +110,13 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 }
