@@ -49,6 +49,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 ///Admin page
 import { AccountManagementModule } from './views/account-management/account-management.module';
+import { UserManagementModule } from './views/user-management/user-management.module';
 
 
 
@@ -73,7 +74,7 @@ import { AccountManagementModule } from './views/account-management/account-mana
         FormsModule,
         HttpClientModule,
         AccountManagementModule,
-
+        UserManagementModule
 
     ],
   declarations: [

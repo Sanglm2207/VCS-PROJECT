@@ -40,6 +40,10 @@ export const routes: Routes = [
       {
         path: 'accounts',
         loadChildren: () => import('./views/account-management/account-management.module').then(m => m.AccountManagementModule)
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./views/user-management/user-management.module').then(m => m.UserManagementModule)
       }
     ]
   },
