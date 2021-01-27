@@ -22,9 +22,6 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-//    @Autowired
-//    private ProductToProductDTO productToProductDTO;
-
     @ResponseStatus(code = HttpStatus.OK)
     @GetMapping("/getAllProducts")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")

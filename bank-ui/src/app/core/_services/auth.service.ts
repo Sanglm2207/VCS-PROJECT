@@ -17,7 +17,6 @@ export class AuthService {
 
   private loginUrl = AppSetting.SERVER_API_URL + 'auth/signin';
   private signupUrl = AppSetting.SERVER_API_URL + 'auth/signup';
-  private logoutUrl = AppSetting.SERVER_API_URL + 'auth/logout'
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +26,5 @@ export class AuthService {
   signUp(info: SignupRequest): Observable<string> {
     return this.http.post<string>(this.signupUrl, info, httpOptions);
   }
-  logout(): Observable<string> {
-    return this.http.post<string>(this.logoutUrl, null, httpOptions);
-  }
+
 }

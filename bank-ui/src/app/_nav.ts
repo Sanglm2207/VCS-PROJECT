@@ -17,6 +17,11 @@ export const navItems: INavData[] = [
   {
     name: 'Account',
     url: '/admin/accounts',
-    icon: 'icon-calculator'
+    icon: 'icon-user'
+  },
+  {
+    name: 'Product',
+    url: '/admin/products',
+    icon: 'icon-tree'
   }
 ];

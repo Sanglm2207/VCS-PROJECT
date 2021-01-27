@@ -17,7 +17,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 import { AppComponent } from './app.component';
 
 // Import containers
-import {DefaultLayoutComponent } from './containers';
+import {DefaultLayoutComponent, UserLayoutComponent } from './containers';
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
@@ -25,7 +25,8 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 const APP_CONTAINERS = [
-  DefaultLayoutComponent
+  DefaultLayoutComponent,
+  UserLayoutComponent
 ];
 
 import {
@@ -50,10 +51,9 @@ import { ToastrModule } from 'ngx-toastr';
 ///Admin page
 import { AccountManagementModule } from './views/account-management/account-management.module';
 import { UserManagementModule } from './views/user-management/user-management.module';
-
-
-
-
+import { AuthGuard } from './core/_guard/auth.guard';
+import { AdminGuard } from './core/_guard/admin.guard';
+import { UserService } from './core/_services/user.service';
 
 
 @NgModule({
@@ -87,8 +87,11 @@ import { UserManagementModule } from './views/user-management/user-management.mo
   ],
   providers: [
     httpInterceptorProviders,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
-    ],
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    AuthGuard,
+    AdminGuard,
+    UserService
+    ],  
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
