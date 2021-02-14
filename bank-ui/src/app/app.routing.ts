@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
 import { DefaultLayoutComponent, UserLayoutComponent } from './containers';
-import { AdminGuard } from './core/_guard/admin.guard';
-import { AuthGuard } from './core/_guard/auth.guard';
 
 import { P404Component } from './views/error/404.component';
 import { LoginComponent } from './views/login/login.component';
@@ -34,7 +32,6 @@ export const routes: Routes = [
   {
     path: 'user',
     component: UserLayoutComponent,
-    canActivate: [AuthGuard],
     data: {
       title: 'Home'
     },
@@ -46,7 +43,6 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: DefaultLayoutComponent,
-    canActivate: [AuthGuard, AdminGuard],
     data: {
       title: 'Home'
     },
@@ -58,6 +54,10 @@ export const routes: Routes = [
       {
         path: 'users',
         loadChildren: () => import('./views/user-management/user-management.module').then(m => m.UserManagementModule)
+      },
+      {
+        path: 'products',
+        loadChildren: () => import('./views/product-management/product-management.module').then(m => m.ProductManagementModule)
       }
     ]
   },

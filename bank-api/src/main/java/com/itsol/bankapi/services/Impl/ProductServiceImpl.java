@@ -1,7 +1,6 @@
 package com.itsol.bankapi.services.Impl;
 
-import com.itsol.bankapi.converters.ProductDTOToProduct;
-import com.itsol.bankapi.dto.ProductDTO;
+
 import com.itsol.bankapi.models.Product;
 import com.itsol.bankapi.repository.ProductRepository;
 import com.itsol.bankapi.security.services.UserDetailsImpl;
@@ -16,12 +15,11 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
-    private ProductDTOToProduct productDTOToProduct;
+
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ProductDTOToProduct productDTOToProduct) {
+    public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.productDTOToProduct = productDTOToProduct;
     }
 
     @Override
@@ -55,11 +53,5 @@ public class ProductServiceImpl implements ProductService {
 //        productRepository.delete(id);
 //    }
 
-    @Override
-    public Product saveOrUpdateProductDTO(ProductDTO productDTO,UserDetailsImpl currentUser) {
-        Product savedProduct = saveOrUpdate(productDTOToProduct.convert(productDTO), currentUser);
 
-        System.out.println("Saved Product Id: " + savedProduct.getId());
-        return savedProduct;
-    }
 }

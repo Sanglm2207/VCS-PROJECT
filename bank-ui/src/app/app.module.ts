@@ -51,9 +51,7 @@ import { ToastrModule } from 'ngx-toastr';
 ///Admin page
 import { AccountManagementModule } from './views/account-management/account-management.module';
 import { UserManagementModule } from './views/user-management/user-management.module';
-import { AuthGuard } from './core/_guard/auth.guard';
-import { AdminGuard } from './core/_guard/admin.guard';
-import { UserService } from './core/_services/user.service';
+import { ProductManagementModule } from './views/product-management/product-management.module';
 
 
 @NgModule({
@@ -74,7 +72,8 @@ import { UserService } from './core/_services/user.service';
         FormsModule,
         HttpClientModule,
         AccountManagementModule,
-        UserManagementModule
+        UserManagementModule,
+        ProductManagementModule
 
     ],
   declarations: [
@@ -87,10 +86,7 @@ import { UserService } from './core/_services/user.service';
   ],
   providers: [
     httpInterceptorProviders,
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
-    AuthGuard,
-    AdminGuard,
-    UserService
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
     ],  
   bootstrap: [ AppComponent ]
 })
